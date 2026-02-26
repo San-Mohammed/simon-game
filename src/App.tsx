@@ -16,7 +16,7 @@ function App() {
       );
       if (isTrue) {
         setGuesses([...gussess, colors[randomNumber()]]);
-
+        setMyGuesses([]);
         setIsMyTurn(false);
         return;
       }
@@ -27,6 +27,7 @@ function App() {
     }
     setMyGuesses([...newGuess]);
   };
+
   useEffect(() => {
     gussess.map((eachGuess, index) => {
       setTimeout(() => {
@@ -35,11 +36,13 @@ function App() {
           setCurrentColor(null);
           return;
         }
+        console.log("current code is ", gussess[index + 1]);
 
         setCurrentColor(gussess[index + 1]);
       }, 1000);
     });
   }, [gussess]);
+
   return (
     <div className="h-screen flex flex-col items-center justify-center gap-2.5">
       <h1>{isMyTurn ? "your turn" : "wait"}</h1>
