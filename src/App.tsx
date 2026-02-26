@@ -18,6 +18,7 @@ function App() {
         setGuesses([...gussess, colors[randomNumber()]]);
         setMyGuesses([]);
         setIsMyTurn(false);
+        setCurrentColor(gussess[0]);
         return;
       }
       setIsMyTurn(false);
@@ -30,16 +31,19 @@ function App() {
 
   useEffect(() => {
     gussess.map((eachGuess, index) => {
-      setTimeout(() => {
-        if (index === gussess.length - 1) {
-          setIsMyTurn(true);
-          setCurrentColor(null);
-          return;
-        }
-        console.log("current code is ", gussess[index + 1]);
+      setTimeout(
+        () => {
+          if (index === gussess.length - 1) {
+            setIsMyTurn(true);
+            setCurrentColor(null);
+            return;
+          }
+          console.log("current code is ", gussess[index + 1]);
 
-        setCurrentColor(gussess[index + 1]);
-      }, 1000);
+          setCurrentColor(gussess[index + 1]);
+        },
+        (index + 1) * 1000,
+      );
     });
   }, [gussess]);
 
